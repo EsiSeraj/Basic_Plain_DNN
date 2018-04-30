@@ -10,7 +10,7 @@ This repository includes the very basic Deep Learning modules (Logistic Regressi
 
 # License - No Warranty
 
-Copyright (C) <2018> <Esmaeil Seraj>
+Copyright (C) <2018> GNU General Public License
     
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
