@@ -7,6 +7,7 @@ Created on Sun Apr 29 12:20:22 2018
 
 Logistic Regression
     - All required helper functions
+    - Sigmoid output for binary classification
     - A comprehensive logistic regression model generator
 
 Reguired Packages
@@ -136,7 +137,7 @@ def propagate(w, b, X, Y):
 
 # In[4]: optimization (gradient descent)
 
-def optimize(w, b, X, Y, num_iter, learning_rate, print_cost = True):
+def optimize(w, b, X, Y, num_iter, learning_rate = 0.5, print_cost = True):
     """
     This function optimizes w and b by running a gradient descent algorithm
     
@@ -146,7 +147,8 @@ def optimize(w, b, X, Y, num_iter, learning_rate, print_cost = True):
     X -- data of shape (dim, number of examples)
     Y -- true "label" vector (0/1 binary), of shape (1, number of examples)
     num_iter -- number of iterations of the optimization loop
-    learning_rate -- learning rate of the gradient descent update rule
+    learning_rate -- learning rate of the gradient descent update rule, 
+    (default = 0.5)
     print_cost -- True to print the loss every 100 steps
     
     Returns:
