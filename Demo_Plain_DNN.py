@@ -33,6 +33,8 @@ import numpy as np
 # included functions: sigmoid(), relu(), tanh(), sigmoid_backward(), 
 # relu_backward(), tanh_backward(), initialize_parameters_deep(), 
 # linear_forward(), activation_forward(), forward_propagation_deep(), 
+# compute_cost(), linear_backward(), activation_backward(), predict_deep(), 
+# backward_propagation_deep(), update_parameters_deep(), plain_nn_model_deep(),
 # =============================================================================
 
 import Plain_DNN as pDNN
