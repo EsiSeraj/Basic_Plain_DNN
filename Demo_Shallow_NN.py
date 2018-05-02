@@ -27,7 +27,7 @@ Copyright (C) <2018>  <Esmaeil Seraj>
 import numpy as np
 
 # =============================================================================
-# # "Shallow_NN.py" test: Shalllow Neural Network (one hidden layer)
+# "Shallow_NN.py" test: Shalllow Neural Network (one hidden layer)
 # This module includes all of the helper functions for Shalllow Neural Network
 # included functions: layer_sizes(), sigmoid(), initialize_params(),
 # forward_propagation(), cross_ent_cost(), backward_propagation(), 
@@ -40,9 +40,9 @@ import Shallow_NN as SNN
 n_h = 4
 np.random.seed(1)
 X_train = np.random.randn(100, 500)
-Y_train = np.random.randint(2, size=(1, X_train.shape[1]))
+Y_train = np.random.randint(2, size = (1, X_train.shape[1]))
 X_test = np.random.randn(100, 200)
-Y_test = np.random.randint(2, size=(1, X_test.shape[1]))
+Y_test = np.random.randint(2, size = (1, X_test.shape[1]))
 
 n_x, n_h, n_y = SNN.layer_sizes(X_train, Y_train, n_h)
 params = SNN.initialize_params(n_x, n_h, n_y)
@@ -57,7 +57,7 @@ print(np.mean(cache['Z1']), np.mean(cache['A1']), np.mean(cache['Z2']),
       np.mean(cache['A2']))
 
 ## cost function
-c = SNN.cross_ent_cost(y_hat, Y_train, params)
+c = SNN.cross_ent_cost(y_hat, Y_train)
 print("cost = " + str(c))
 
 ## back propagation
@@ -77,8 +77,11 @@ print("b2 = " + str(params1["b2"]))
 
 ## buil SNN model
 num_iterations = 2000
+learning_rate = 0.005
+plot_flag = True
+print_cost = True
 params2, costs = SNN.shallow_nn_model(X_train, Y_train, n_h, num_iterations, 
-                                     learning_rate = 0.5, print_cost = True)
+                                     learning_rate, print_cost, plot_flag)
 
 ## prediction using built snn model
 predict_train = SNN.predict(params, X_train)
