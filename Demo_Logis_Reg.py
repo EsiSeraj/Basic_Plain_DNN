@@ -27,7 +27,7 @@ Copyright (C) <2018>  <Esmaeil Seraj>
 import numpy as np
 
 # =============================================================================
-# # "Logis_Reg.py" test: Logistic Regression
+# "Logis_Reg.py" test: Logistic Regression
 # This module includes all of the helper functions for logistic regression
 # included functions: "sigmoid()", "initialize_params()", propagate(), 
 # optimize(), predict()
