@@ -1,5 +1,6 @@
 # Basic_Plain_DNN
 This repository includes the very basic Deep Learning modules (Logistic Regression - Plain Shallow Networks - Plain Deep Networks) in Python, for starters. These implementations do not include any of the improvement techniques (i.e. regularization, batch normalization, drop-out and etc) for deep neural network model. Basically, they just implement the general (and complete) architecture of a deep model training problem in a vectorized and very efficientand approach through providing all of the required helper functions first. Shallow neural networks with only one hidden layer and logistic regression models are also included in current repository. The main steps for building a Neural Network that are implemented here are:
+
      1. Define the model structure (i.e. number and dimensions of different layers, activation functions and etc) 
      2. Initialize the model's parameters and set the hyperparameters
      3. Loop:
@@ -11,6 +12,7 @@ This repository includes the very basic Deep Learning modules (Logistic Regressi
 
 # Overview
  Features of current repository can be summrized as below:
+ 
 	1. Plain architectures implemented from scratch (great for beginners)
 	2. Everything in raw Python codes and not using TensorFlow, Torch, PyTorch or etc (great for beginners to understand the basic concepts and learn how DNN works)
 	3. Vectorized implementations (very efficient)
@@ -22,6 +24,7 @@ This repository includes the very basic Deep Learning modules (Logistic Regressi
 
 # User Manual
 List of the functions and scripts are as below with a short description of each. For each method, use the provided Demo script to see how the module works and what type of helper functions are provided within that module.
+
 	1. **"Plain_DNN.py":** Plain Deep Neural Network (Without any improvement technique, a plain, vectorized, highly efficient, all raw Python implementation of deep neural networks)
 		- All required helper functions: included functions: sigmoid(), relu(), tanh(), sigmoid_backward(), relu_backward(), tanh_backward(), initialize_parameters_deep(), linear_forward(), activation_forward(), forward_propagation_deep(), compute_cost(), linear_backward(), activation_backward(), predict_deep(), backward_propagation_deep(), update_parameters_deep(), plain_nn_model_deep()
 		- tanh, relu and sigmoid activations for hidden layers
