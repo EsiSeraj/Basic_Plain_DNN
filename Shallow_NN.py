@@ -13,9 +13,10 @@ Shalllow Neural Network (one hidden layer) - SNN
 
 Reguired Packages
     - numpy
+    - matplotlib.pyplot
     
 # NOTE: this function gets regular updats; for now, it only includes equations
-    and computations for sigmoid and ReLU non-linearities, additional 
+    and computations for sigmoid and tanh non-linearities, additional 
     non-linearities are to be added in the future
     
 Copyright (C) <2018>  <Esmaeil Seraj>
@@ -48,6 +49,7 @@ Copyright (C) <2018>  <Esmaeil Seraj>
 
 # In[0]: loading packages
 import numpy as np
+import matplotlib.pyplot as plt
 
 # In[1]: adjusting layer dimentions (input - hidden - output)
 
@@ -69,22 +71,26 @@ def layer_sizes(X, Y, n_h):
 
     return (n_x, n_h, n_y)
 
-# In[2]: sigmoid function
+# In[2]: activation functions
 
-def sigmoid(z):
+def sigmoid(Z):
     """
-    This function Computes the sigmoid of z (corresponding to activation)
-
-    Arguments:
-    z -- A scalar or numpy array of any size.
-
-    Return:
-    a -- sigmoid (or activation) of z
-    """
-
-    a = 1/(1+np.exp(-z))
+    This function Computes the sigmoid activation of z in numpy
     
-    return a
+    Arguments:
+    Z -- A scalar or numpy array of any shape
+    
+    Returns:
+    A -- output of sigmoid(z), same shape as Z
+    cache -- returns Z as well, useful during backpropagation
+    """
+    
+    A = 1/(1 + np.exp(-Z))
+    cache = Z
+    
+    assert(A.shape == Z.shape)
+    
+    return A, cache
 
 # In[3]: parameter initialization
     
@@ -147,7 +153,7 @@ def forward_propagation(X, parameters):
     Z1 = np.dot(W1, X) + b1
     A1 = np.tanh(Z1)
     Z2 = np.dot(W2, A1) + b2
-    A2 = sigmoid(Z2)
+    A2, cache_sigm = sigmoid(Z2)
     
     assert(A2.shape == (1, X.shape[1]))
     
@@ -160,7 +166,7 @@ def forward_propagation(X, parameters):
 
 # In[5]: compute cost function
     
-def cross_ent_cost(A2, Y, parameters):
+def cross_ent_cost(A2, Y):
     """
     This function Computes the cross-entropy cost function
     
@@ -168,7 +174,6 @@ def cross_ent_cost(A2, Y, parameters):
     A2 -- The sigmoid output of the second activation (output layer), of shape 
     (1, number of examples)
     Y -- "true" labels vector of shape (1, number of examples)
-    parameters -- python dictionary containing all parameters of NN
     
     Returns:
     cost -- cross-entropy cost 
@@ -224,7 +229,7 @@ def backward_propagation(parameters, cache, X, Y):
 
 # In[7]: updating parameters
     
-def update_parameters(parameters, grads, learning_rate = 0.5):
+def update_parameters(parameters, grads, learning_rate = 0.005):
     """
     This function updates parameters using the gradient descent update rule
     
@@ -232,7 +237,7 @@ def update_parameters(parameters, grads, learning_rate = 0.5):
     parameters -- python dictionary containing all model parameters 
     grads -- python dictionary containing computed gradients
     learning_rate -- learning rate of the gradient descent update rule, 
-    (default = 0.5)
+    (default = 0.005)
     
     Returns:
     parameters -- python dictionary containing all updated parameters 
@@ -262,8 +267,8 @@ def update_parameters(parameters, grads, learning_rate = 0.5):
 
 # In[8]: shallow neural network (one hidden layer) (SNN) model
     
-def shallow_nn_model(X, Y, n_h, num_iterations = 10000, learning_rate = 0.5, 
-                     print_cost = True):
+def shallow_nn_model(X, Y, n_h, num_iterations = 10000, learning_rate = 0.005, 
+                     print_cost = True, plot_lrn_curve = True):
     """
     This function Builds a shallow neural network (one hidden layer)(SNN) model
     based upon your train data
@@ -274,13 +279,14 @@ def shallow_nn_model(X, Y, n_h, num_iterations = 10000, learning_rate = 0.5,
     n_h -- size of the hidden layer (# hidden units)
     num_iterations -- Number of iterations in gradient descent loop
     learning_rate -- learning rate of the gradient descent update rule, 
-    (default = 0.5)
+    (default = 0.005)
     print_cost -- if True, print the cost every 1000 iterations
+    plot_lrn_curve -- if True, it plots the learning curve
     
     Returns:
     parameters -- parameters learnt by the model by which prediction can occur
     costs -- list of all the costs computed during the optimization, this will 
-            be used to plot the learning curve.
+            be used to plot the learning curve
     """
 
     n_x = layer_sizes(X, Y, n_h)[0]
@@ -300,7 +306,7 @@ def shallow_nn_model(X, Y, n_h, num_iterations = 10000, learning_rate = 0.5,
         A2, cache = forward_propagation(X, parameters)
         
         # Cost function
-        cost = cross_ent_cost(A2, Y, parameters)
+        cost = cross_ent_cost(A2, Y)
  
         # Backpropagation
         grads = backward_propagation(parameters, cache, X, Y)
@@ -315,6 +321,14 @@ def shallow_nn_model(X, Y, n_h, num_iterations = 10000, learning_rate = 0.5,
         # Print the cost every 100 iterations
         if print_cost and i % 100 == 0:
             print ("Cost after iteration %i: %f" % (i, cost))
+            
+    # plot the cost    
+    if plot_lrn_curve == True:
+        plt.plot(np.squeeze(costs))
+        plt.ylabel('cost')
+        plt.xlabel('iterations (per hundreds)')
+        plt.title("Learning rate =" + str(learning_rate))
+        plt.show()
 
     return parameters, costs
     
