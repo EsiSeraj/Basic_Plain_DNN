@@ -8,7 +8,7 @@ Created on Sun Apr 29 12:20:22 2018
 Plain Deep Neural Network (Without any improvement technique, a plain 
                            implementation of deep neural networks)
     - All required helper functions
-    - tanh and relu activations for hidden layers
+    - tanh, relu and sigmoid activations for hidden layers
     - Sigmoid output for binary classification
     - A comprehensive but plain DNN model generator
 
