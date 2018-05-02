@@ -52,16 +52,18 @@ import numpy as np
 
 def sigmoid(z):
     """
-    This function Computes the sigmoid of z (corresponding to activation)
+    This function Computes the sigmoid activation of z in numpy
 
     Arguments:
-    z -- A scalar or numpy array of any size.
+    z -- A scalar or numpy array of any shape
 
     Return:
     a -- sigmoid (or activation) of z
     """
 
-    a = 1/(1+np.exp(-z))
+    a = 1/(1 + np.exp(-z))
+    
+    assert(a.shape == z.shape)
     
     return a
 
@@ -137,7 +139,7 @@ def propagate(w, b, X, Y):
 
 # In[4]: optimization (gradient descent)
 
-def optimize(w, b, X, Y, num_iter, learning_rate = 0.5, print_cost = True):
+def optimize(w, b, X, Y, num_iter, learning_rate = 0.005, print_cost = True):
     """
     This function optimizes w and b by running a gradient descent algorithm
     
@@ -148,7 +150,7 @@ def optimize(w, b, X, Y, num_iter, learning_rate = 0.5, print_cost = True):
     Y -- true "label" vector (0/1 binary), of shape (1, number of examples)
     num_iter -- number of iterations of the optimization loop
     learning_rate -- learning rate of the gradient descent update rule, 
-    (default = 0.5)
+    (default = 0.005)
     print_cost -- True to print the loss every 100 steps
     
     Returns:
@@ -226,7 +228,7 @@ def predict(w, b, X):
 # In[6]: logistic regression model
     
 def logis_reg_model(X_train, Y_train, X_test, Y_test, init_case = "zero", 
-                    num_iter = 2000, learning_rate = 0.5, print_cost = True):
+                    num_iter = 2000, learning_rate = 0.005, print_cost = True):
     """
     This function Builds a logistic regression model based upon your train data
     
@@ -237,7 +239,7 @@ def logis_reg_model(X_train, Y_train, X_test, Y_test, init_case = "zero",
     Y_test -- test labels represented by an array of shape (1, m_test)
     num_iter -- hyperparameter: number of iterations for optimization, 
                         (default = 2000)
-    learning_rate -- hyperparameter: used in updating stage, (default = 0.5)
+    learning_rate -- hyperparameter: used in updating stage, (default = 0.005)
     print_cost -- Set to true to print the cost every 100 iterations, (default 
                    = True)
     
