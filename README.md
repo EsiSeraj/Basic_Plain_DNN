@@ -51,7 +51,7 @@ List of the functions and scripts are as below with a short description of each.
 # Update Repository
 This repository is pretty new and so gets regular updats; I also intend to create another repository in my GitHub with more professional (with improvement techniques) but simple implementations of deep learning methods, which is gonna be great for beginners in this area. 
 
-Also any comments on the functions (improvement recommendations) and suggestions (on what other helper functions should be added). Feel free to contact me here or by email.
+Also any comments on the functions (improvement recommendations) and suggestions (on what other helper functions should be added) are greatly welcomed and appreciated. Feel free to contact me here or directly by email.
 
 # License - No Warranty
 
